@@ -103,15 +103,12 @@ body {
 
 .section2 {
     padding: 100px;
+    gap: 30px;
+    margin-top: -150px;
 }
 
 .numbermrg {
     margin: 50px;
-}
-
-.section2 {
-  gap: 30px;
-  margin-top: -150px;
 }
 
 .ex1rect {
@@ -125,4 +122,35 @@ body {
 }
 .ex1:hover + .ex1rect, .ex1rect:hover {
   background: #aeaeae;
+}
+.edit2 {
+    border: 1px solid #3a3e48;
+    padding: 10px;
+    background: #292c36;
+}
+
+.section3 {
+    padding: 100px;
+    gap: 30px;
+    margin-top: -150px;
+}
+
+.ex1 {
+  box-shadow: 12px 20px 2px;
+  color: #434343;
+}
+
+.editparent1, .editparent2 {
+  position: relative;
+}
+
+.editparent2:has(.edit2:hover), .editparent1:has(.edit:hover){
+  top: -10px;
+}
+
+.output {
+  padding: 10px;
+  border: 1px solid #aeaeae;
+  height: 300px;
+  width: 500px;
 }
