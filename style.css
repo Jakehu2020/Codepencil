@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
-    background: #24262e;
+    background: #24262e !important;
 }
 
 * {
@@ -93,8 +93,8 @@ body {
 }
 
 .down {
-    position: absolute;
-    bottom: 50px;
+    position: fixed;
+    bottom: 30px;
     left: 50%;
     right: 50%;
     z-index: 10;
@@ -107,4 +107,22 @@ body {
 
 .numbermrg {
     margin: 50px;
+}
+
+.section2 {
+  gap: 30px;
+  margin-top: -150px;
+}
+
+.ex1rect {
+  width: 320px;
+  height: 38px;
+  opacity: 0.5;
+  background: #7d7d7d;
+  position: relative;
+  top: -205px;
+  left: 150px;
+}
+.ex1:hover + .ex1rect, .ex1rect:hover {
+  background: #aeaeae;
 }
