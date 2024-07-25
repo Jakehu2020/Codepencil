@@ -22,17 +22,15 @@ function stop() {
 
 
 function addToOutput(s) {
+  if(!s || s=="undefined"){ return; }
   content.innerText += `${s}\n`
   content.scrollTop = content.scrollHeight
 }
 
 async function evaluatePython(x) {
-  console.log("start")
   await pyodide.loadPackagesFromImports(x, addToOutput, addToOutput)
-  console.log("start2")
   try {
     let result = await pyodide.runPythonAsync(x)
-    console.log("start3")
     addToOutput(`${result}`)
   }
   catch (e) {
@@ -40,7 +38,7 @@ async function evaluatePython(x) {
   }
 }
 // 
-document.querySelector(".run", async (e) => {
- content.innerHTML+="<hr>";
- await evaluatePython(editor.innerText);
+document.querySelector(".run").addEventListener("click",async (e) => {
+  content.innerHTML+="<hr>";
+  await evaluatePython(editor.innerText);
 })
