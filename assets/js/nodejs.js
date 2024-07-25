@@ -32,6 +32,7 @@ async function evaluate(x) {
     console.warn = (function(){ addToOutput("<span class='warn'>"+clean(Array.from(arguments))+"</span>") });
     console.error = (function(){ addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
     alert = prompt = confirm = console.log; 
+    addToOutput("Initialized!\n")
 });
 
 async function evaluate(x) {
