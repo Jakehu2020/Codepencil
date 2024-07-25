@@ -28,9 +28,9 @@ async function evaluate(x) {
     document.querySelector(".stop").addEventListener("click", async (e) => {
         throw "!!!";
     });
-    console.log = (() => { addToOutput(clean(Array.from(arguments).join(' '))) });
-    console.warn = (() => { addToOutput("<span class='warn'>"+clean(Array.from(arguments))+"</span>") });
-    console.error = (() => { addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
+    console.log = (function(){ addToOutput(clean(Array.from(arguments).join(' '))) });
+    console.warn = (function(){ addToOutput("<span class='warn'>"+clean(Array.from(arguments))+"</span>") });
+    console.error = (function(){ addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
     alert = prompt = confirm = console.log; 
 });
 
