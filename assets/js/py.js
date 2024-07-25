@@ -27,17 +27,20 @@ function addToOutput(s) {
 }
 
 async function evaluatePython(x) {
+  console.log("start")
   await pyodide.loadPackagesFromImports(x, addToOutput, addToOutput)
+  console.log("start2")
   try {
     let result = await pyodide.runPythonAsync(x)
+    console.log("start3")
     addToOutput(`${result}`)
   }
   catch (e) {
     addToOutput(`${e}`)
   }
-  code.value = ''
 }
 // 
-document.querySelector(".run", (e) => {
- content.innerHTML+="<hr>"; evaluatePython(editor.innerText);
+document.querySelector(".run", async (e) => {
+ content.innerHTML+="<hr>";
+ await evaluatePython(editor.innerText);
 })
