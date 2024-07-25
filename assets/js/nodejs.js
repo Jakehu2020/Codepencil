@@ -8,18 +8,21 @@ async function evaluate(x) {
     });
 }
 (async ()=>{
+    let qs = document.querySelector;
+    const shadow = qs(".webout").attachShadow({ mode: "open" });
+    let content = document.querySelector('div');
+    shadow.appendChild(content);
     function clean(s){ return s.replaceAll("<","&lt;").replaceAll(">","&gt;")}
     console.log = (() => { addToOutput(clean(Array.from(arguments).join(' '))) });
     console.warn = (() => { addToOutput("<span class='warn'>"+clean(Array.from(arguments))+"</span>") });
     console.error = (() => { addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
     alert = prompt = confirm = console.log; 
     let qs = document.querySelector;
-    qs(".webout").attachShadow({ mode: "open" }).appendChild(document.createElement("div"));
 
     function addToOutput(s) {
         if(!s || s=="undefined"){ return; }
-        qs(".webout").shadowRoot.qs("div").innerHTML+=`${s}\n`;
-        qs(".webout").shadowRoot.qs("div").scrollTop = qs(".webout").shadowRoot.qs("div").scrollHeight;
+        content.innerHTML+=`${s}\n`;
+        content.scrollTop = qs(".webout").shadowRoot.qs("div").scrollHeight;
     }
     qs(".run").addEventListener("click", async (e) => {
         await evaluate(qs(".code").innerText);
