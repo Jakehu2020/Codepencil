@@ -28,6 +28,7 @@ function addToOutput(s) {
 }
 
 async function evaluatePython(x) {
+  content.innerHTML+="<hr>";
   await pyodide.loadPackagesFromImports(x, addToOutput, addToOutput)
   try {
     let result = await pyodide.runPythonAsync(x)
@@ -38,7 +39,6 @@ async function evaluatePython(x) {
   }
 }
 // 
-document.querySelector(".run").addEventListener("click",async (e) => {
-  content.innerHTML+="<hr>";
+document.querySelector(".run").addEventListener("click", async (e) => {
   await evaluatePython(editor.innerText);
 })
