@@ -23,12 +23,12 @@ function stop() {
 
 function addToOutput(s) {
   if(!s || s=="undefined"){ return; }
+  content.innerHTML+="<hr>";
   content.innerText += `${s}\n`
   content.scrollTop = content.scrollHeight
 }
 
 async function evaluatePython(x) {
-  content.innerHTML+="<hr>";
   await pyodide.loadPackagesFromImports(x, addToOutput, addToOutput)
   try {
     let result = await pyodide.runPythonAsync(x)
