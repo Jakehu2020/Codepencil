@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    background: #24262e !important;
+}
+
+* {
+    transition: 0.5s all;
+    color: #cbceda;
+}
+
+.navbar {
+    background: #353944 !important;
+}
+
+.fonted {
+    font-family: "PT Sans Narrow", sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+.roboto {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.pt-sans-narrow-bold {
+    font-family: "PT Sans Narrow", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.langnav {
+    font-size: 20px;
+}
+
+.mainstart h1 {
+    font-size: 70px;
+    font-weight: 100;
+    letter-spacing: -2px;
+}
+
+.mainstart h1 i {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.mainstart {
+    gap: 100px;
+}
+
+.edit {
+    border: 1px solid #3a3e48;
+    padding: 10px;
+    background: #292c36;
+}
+
+.tab {
+    background: #353944;
+    padding: 5px;
+    border: 1px solid #3a3e48;
+}
+
+.tab span {
+    padding: 10px;
+}
+
+.maintext-start p {
+    font-size: 20px;
+}
+
+.mainstart .flexbox {
+    gap: 10px;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid white;
+}
+
+.down {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    right: 50%;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.section2 {
+    padding: 100px;
+    gap: 30px;
+    margin-top: -150px;
+}
+
+.numbermrg {
+    margin: 50px;
+}
+
+.ex1rect {
+  width: 320px;
+  height: 38px;
+  opacity: 0.5;
+  background: #7d7d7d;
+  position: relative;
+  top: -205px;
+  left: 150px;
+}
+.ex1:hover + .ex1rect, .ex1rect:hover {
+  background: #aeaeae;
+}
+.edit2 {
+    border: 1px solid #3a3e48;
+    padding: 10px;
+    background: #292c36;
+}
+
+.section3 {
+    padding: 100px;
+    gap: 30px;
+    margin-top: -150px;
+}
+
+.ex1 {
+  box-shadow: 12px 20px 2px;
+  color: #434343;
+}
+
+.editparent1, .editparent2 {
+  position: relative;
+}
+
+.editparent2:has(.edit2:hover), .editparent1:has(.edit:hover){
+  top: -10px;
+}
+
+.output {
+  padding: 10px;
+  border: 1px solid #aeaeae;
+  height: 300px;
+  width: 500px;
+}
