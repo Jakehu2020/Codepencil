@@ -9,7 +9,7 @@ async function evaluate(x) {
     });
 }
 
-(async() => {
+// (async() => {
     let webout = document.querySelector(".webout");
     const editor = document.querySelector(".code");
 
@@ -33,7 +33,7 @@ async function evaluate(x) {
     console.error = (function(){ addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
     alert = prompt = confirm = console.log; 
     addToOutput("Initialized!\n")
-});
+// });
 
 async function evaluate(x) {
     await (async () => {
