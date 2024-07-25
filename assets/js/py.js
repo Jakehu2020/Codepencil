@@ -23,9 +23,8 @@ function stop() {
 
 function addToOutput(s) {
   if(!s || s=="undefined"){ return; }
-  content.innerHTML+="<hr>";
-  content.innerText += `${s}\n`
-  content.scrollTop = content.scrollHeight
+  content.innerHTML+=`<hr>${s.replaceAll("<","&lt;").replaceAll(">","&gt;")}\n`;
+  content.scrollTop = content.scrollHeight;
 }
 
 async function evaluatePython(x) {
