@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded",(e) => {
 
         function addToOutput(s) {
         if(!s || s=="undefined"){ return; }
-            content.innerHTML+=`<hr>${s.replaceAll("<","&lt;").replaceAll(">","&gt;")}\n`;
+            content.innerHTML+=`<hr>${s}\n`;
             content.scrollTop = content.scrollHeight;
         }
         document.querySelector(".run").addEventListener("click", async (e) => {
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded",(e) => {
         document.querySelector(".stop").addEventListener("click", async (e) => {
             throw "!!!";
         });
+        function clean(s){ return s.replaceAll("<","&lt;").replaceAll(">","&gt;") }
         console.log = (function(){ addToOutput(clean(Array.from(arguments).join(' '))) });
         console.warn = (function(){ addToOutput("<span class='warn'>"+clean(Array.from(arguments))+"</span>") });
         console.error = (function(){ addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
