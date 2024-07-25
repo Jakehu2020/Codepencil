@@ -57,6 +57,6 @@ body {
     white-space: pre !important;
     resize: none;
 }
-.js {
+.py, .js {
   height: 563px;
 }
