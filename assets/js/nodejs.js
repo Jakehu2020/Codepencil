@@ -1,3 +1,8 @@
+console.log = (() => { addToOutput(clean(Array.from(arguments).join(' '))) });
+console.warn = (() => { addToOutput("<span class='warn'>"+clean(Array.from(arguments))+"</span>") });
+console.error = (() => { addToOutput("<span class='err'>"+clean(Array.from(arguments))+"</span>") });
+alert = prompt = confirm = console.log; 
+
 async function evaluate(x) {
     console.log = function(){ console.error(Array.from(arguments).join(' ')) }
     (async () => {
@@ -22,13 +27,13 @@ async function evaluate(x) {
         content.innerHTML+=`<hr>${s.replaceAll("<","&lt;").replaceAll(">","&gt;")}\n`;
         content.scrollTop = content.scrollHeight;
     }
+    document.querySelector(".run").addEventListener("click", async (e) => {
+        await evaluate(editor.innerText);
+    })
+    document.querySelector(".stop").addEventListener("click", async (e) => {
+        throw "!!!";
+    });
 });
-document.querySelector(".run").addEventListener("click", async (e) => {
-    await evaluate(editor.innerText);
-})
-document.querySelector(".stop").addEventListener("click", async (e) => {
-    throw "!!!";
-})
 
 async function evaluate(x) {
     (async () => {
