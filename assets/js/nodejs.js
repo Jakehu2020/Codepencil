@@ -1,6 +1,44 @@
 document.addEventListener("DOMContentLoaded",(e) => {
 
     (async() => {
+        function saveCaretPosition(context) {
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            const preCaretRange = range.cloneRange();
+            preCaretRange.selectNodeContents(context);
+            preCaretRange.setEnd(range.endContainer, range.endOffset);
+            return preCaretRange.toString().length;
+        }
+        
+        function restoreCaretPosition(context, pos) {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.setStart(context, 0);
+            range.collapse(true);
+        
+            let nodeStack = [context], node, charCount = 0, foundStart = false, stop = false;
+        
+            while (!stop && (node = nodeStack.pop())) {
+                if (node.nodeType === 3) {
+                    const nextCharCount = charCount + node.length;
+                    if (!foundStart && pos <= nextCharCount) {
+                        range.setStart(node, pos - charCount);
+                        range.setEnd(node, pos - charCount);
+                        stop = true;
+                    }
+                    charCount = nextCharCount;
+                } else {
+                    let i = node.childNodes.length;
+                    while (i--) {
+                        nodeStack.push(node.childNodes[i]);
+                    }
+                }
+            }
+        
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
         let webout = document.querySelector(".webout");
         const editor = document.querySelector(".code");
 
@@ -27,6 +65,7 @@ document.addEventListener("DOMContentLoaded",(e) => {
         addToOutput("Initialized!\n");
 
         editor.addEventListener('input', (e) => {
+            const caretPosition = saveCaretPosition(editor);
             let text = editor.innerText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             text = text.replace(/(".*?"|'.*?'|`.*?`)/g, '<span class="js-string">$1</span>');
             text = text.replace(/\b(const|let|var|function|if|else|for|while|return|true|false|null|undefined)\b/, '<span class="js-keyword">$1</span>');
@@ -34,6 +73,7 @@ document.addEventListener("DOMContentLoaded",(e) => {
             text = text.replace(/(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm, '<span class="js-comment">$1</span>');
         
             editor.innerHTML = text;
+            restoreCaretPosition(editor, caretPosition);
         });
     })();
 

@@ -60,3 +60,19 @@ body {
 .py, .js {
   height: 563px;
 }
+
+.js-keyword {
+    color: #569cd6;
+}
+
+.js-string {
+    color: #ce9178;
+}
+
+.js-number {
+    color: #b5cea8;
+}
+
+.js-comment {
+    color: #6a9955;
+}
