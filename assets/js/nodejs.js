@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded",(e) => {
 
         function addToOutput(s) {
         if(!s || s=="undefined"){ return; }
-            content.innerHTML+=`<hr>${s}\n`;
             content.scrollTop = content.scrollHeight;
         }
         document.querySelector(".run").addEventListener("click", async (e) => {
+            content.innerHTML+=`<hr>${s}\n`;
             await evaluate(editor.innerText);
         })
         document.querySelector(".stop").addEventListener("click", async (e) => {
