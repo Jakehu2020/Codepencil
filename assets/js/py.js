@@ -4,20 +4,13 @@ const editor = document.querySelector(".code");
 let shadow = webout.attachShadow({ mode: "open" });
 let content = document.createElement("div");
 shadow.appendChild(content);
-function run() {
-//   
-}
-function stop() {
-  
-}
-//
+
 (async () => {
   console.log("1");
   content.innerText = 'Initializing...\n'
 
   window.pyodide = await loadPyodide({stdout: addToOutput, stderr: addToOutput})
-  
-        content.innerText += 'Ready!\n' 
+  content.innerText += 'Ready!\n' 
 })()
 
 
@@ -37,12 +30,47 @@ async function evaluatePython(x) {
     addToOutput(`${e}`)
   }
 }
-// 
 document.querySelector(".run").addEventListener("click", async (e) => {
   await evaluatePython(editor.innerText);
 })
 
-// ^.*?(apple|banana|cherry).*?((?!\1)(?1)).*?$
+unction saveCaretPosition(context) {
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const preCaretRange = range.cloneRange();
+  preCaretRange.selectNodeContents(context);
+  preCaretRange.setEnd(range.endContainer, range.endOffset);
+  return preCaretRange.toString().length;
+}
+
+function restoreCaretPosition(context, pos) {
+  const selection = window.getSelection();
+  const range = document.createRange();
+  range.setStart(context, 0);
+  range.collapse(true);
+
+  let nodeStack = [context], node, charCount = 0, foundStart = false, stop = false;
+
+  while (!stop && (node = nodeStack.pop())) {
+      if (node.nodeType === 3) {
+          const nextCharCount = charCount + node.length;
+          if (!foundStart && pos <= nextCharCount) {
+              range.setStart(node, pos - charCount);
+              range.setEnd(node, pos - charCount);
+              stop = true;
+          }
+          charCount = nextCharCount;
+      } else {
+          let i = node.childNodes.length;
+          while (i--) {
+              nodeStack.push(node.childNodes[i]);
+          }
+      }
+  }
+
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
 
 editor.addEventListener('input', (e) => {
   const caretPosition = saveCaretPosition(editor);
