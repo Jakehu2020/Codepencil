@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded",(e) => {
             text = text.replace(/(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm, '<span class="js-comment">$1</span>');
         
             editor.innerHTML = text;
-        };
-    });
+        });
+    })();
 
     async function evaluate(x) {
         await (async () => {
