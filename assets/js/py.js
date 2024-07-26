@@ -34,7 +34,7 @@ document.querySelector(".run").addEventListener("click", async (e) => {
   await evaluatePython(editor.innerText);
 })
 
-unction saveCaretPosition(context) {
+function saveCaretPosition(context) {
   const selection = window.getSelection();
   const range = selection.getRangeAt(0);
   const preCaretRange = range.cloneRange();
