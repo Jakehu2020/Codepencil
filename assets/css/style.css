@@ -154,3 +154,8 @@ body {
   height: 300px;
   width: 500px;
 }
+
+.s {
+    color: #cbceda;
+    text-decoration: none !important;
+}
