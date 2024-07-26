@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded",(e) => {
             const caretPosition = saveCaretPosition(editor);
             let text = editor.innerText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             text = text.replace(/(".*?"|'.*?'|`.*?`)/g, '<span class="js-string">$1</span>');
-            text = text.replace(/\b(const|let|var|function|if|else|for|while|return|true|false|null|undefined)\b/, '<span class="js-keyword">$1</span>');
+            text = text.replace(/\b(const|let|var|function|if|else|for|while|return|true|false|null|undefined)\b/g, '<span class="js-keyword">$1</span>');
             text = text.replace(/\b(\d+)\b/g, '<span class="js-number">$1</span>');
             text = text.replace(/(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm, '<span class="js-comment">$1</span>');
         
