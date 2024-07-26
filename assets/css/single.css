@@ -76,3 +76,19 @@ body {
 .js-comment {
     color: #6a9955;
 }
+
+.py-keyword {
+    color: #569cd6;
+}
+
+.py-string {
+    color: #ce9178;
+}
+
+.py-number {
+    color: #b5cea8;
+}
+
+.py-comment {
+    color: #6a9955;
+}
